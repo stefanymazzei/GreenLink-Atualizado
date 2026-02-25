@@ -1,0 +1,1219 @@
+<!DOCTYPE html> 
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Início | GreenLink</title>
+  <link rel="icon" type="image/png" href="2-transparente.png">
+
+  <style>
+    
+    /* ================= VARIÁVEIS ================= */
+    :root {
+      --green-main: #6ee57a;
+      --green-light: #e9ffe7;
+      --green-sidebar: #d9ffd6;
+      --green-bg: #9bf17c;
+      --blue-accent: #3bb4ff;
+
+      --text-dark: #2f2f2f;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(270deg, #36b5f5, #93f860, #36b5f5);
+      background-size: 400% 400%;
+      animation: fundoAnimado 7s ease infinite;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    @keyframes fundoAnimado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; 
+    z-index: 0; 
+}
+/* Troque ".btn-avancar" pelo nome real da classe do seu botão */
+.btn-avancar {
+    position: relative; /* OBRIGATÓRIO: sem isso o z-index não funciona */
+    z-index: 10;        /* Camada alta: Fica na frente das partículas */
+    cursor: pointer;    /* Garante a mãozinha do mouse */
+}
+
+        .container {
+            position: relative; 
+            z-index: 2;
+            width: 100%;
+            max-width: 365px;
+            text-align: center;
+            padding: 60px 25px;
+            animation: fadeIn 1.5s ease-out; 
+            margin-top: -50px;
+        }
+
+        .logo-main {
+    width: 320px;
+}
+
+    /* ================= CARDS TRANSPARENTES ================= */
+/* ===== BLOCO DE TEXTO (Materiais Recicláveis) ===== */
+.intro-box {
+  /* Reduzi a opacidade de 0.558 para 0.25 para ficar mais transparente */
+  background: rgba(220, 255, 220, 0.25); 
+  backdrop-filter: blur(10px); /* Aumentei o desfoque para o efeito "vidro fosco" */
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  
+  /* Borda sutil ajuda a destacar o elemento transparente */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 20px; /* Garante espaçamento interno */
+  margin-bottom: 20px; /* Espaço abaixo do box */
+}
+
+/* ===== CARDS DOS MATERIAIS ===== */
+.material {
+  /* Reduzi a opacidade para 0.2 para ficar bem translúcido */
+  background: rgba(220, 255, 220, 0.2); 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  
+        padding: 30px;
+        width: 100%;
+        max-width: 900px;
+        min-height: 140px; /* mantém o grande espaço visual do mockup */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease, background 0.2s;
+}
+
+/* Efeito ao passar o mouse para dar interatividade */
+.material:hover {
+  background: rgba(220, 255, 220, 0.4); /* Fica um pouco mais sólido ao passar o mouse */
+  transform: translateY(-3px);
+  cursor: pointer;
+    }
+    .materials-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px 24px; /* mais espaço horizontal entre colunas */
+      width: 100%;
+      max-width: 900px; /* Limita a largura do grid para ficar centralizado */
+      margin: 0 auto; /* centraliza o grid dentro do main-content */
+      align-items: start;
+      padding: 6px 2px;
+    }
+
+    /* ================= SIDEBAR ================= */
+    .sidebar {
+      width: 260px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: fixed;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-area img {
+      max-width: 200px;
+    }
+
+    .menu-item {
+      padding: 14px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      color: #2f2f2f;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      gap: 12px;
+      transition: 0.2s;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+      background: #e6ffe4;
+      color: #1c7c3c;
+    }
+
+    .logout-btn {
+      margin-top: auto;
+      background: rgba(255, 0, 0, 0.08);
+      color: #c0392b;
+      cursor: pointer;
+    }
+
+    /* ================= CONTEÚDO ================= */
+    .main-content {
+    margin-left: 260px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1200px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente o conteúdo dentro da área principal */
+    gap: 20px;
+    /* ADICIONE ESTAS DUAS LINHAS: */
+    position: relative; /* Cria uma camada para o elemento */
+    z-index: 10;        /* Coloca ele na "altura 10", acima das partículas (que estão na 0) */
+}
+
+    .intro-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+    }
+
+    .intro-card h2 {
+      margin-bottom: 15px;
+      color: var(--text-dark);
+    }
+    .intro-card p {
+      color: white;
+      line-height: 1.5;
+    }
+
+    /* ================= GRID DE MATERIAIS ================= */
+    .materials-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      width: 100%;
+      max-width: 900px; /* Limita a largura do grid para ficar centralizado */
+    }
+
+   .material-row {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.2s; /* Mantém a transição suave do hover */
+      
+      /* --- ADICIONE ESTAS LINHAS PARA A ANIMAÇÃO DO BONECO --- */
+      opacity: 0; /* Começa invisível */
+      animation: entradaLinka 0.8s ease-out forwards; /* Usa a mesma animação da Linka */
+    }
+/* Efeito cascata para os itens da lista */
+    .material-row:nth-child(1) { animation-delay: 0.1s; }
+    .material-row:nth-child(2) { animation-delay: 0.2s; }
+    .material-row:nth-child(3) { animation-delay: 0.3s; }
+    .material-row:nth-child(4) { animation-delay: 0.4s; }
+    .material-row:nth-child(5) { animation-delay: 0.5s; }
+    .material-row:nth-child(6) { animation-delay: 0.6s; }
+    .material-row:nth-child(7) { animation-delay: 0.7s; }
+    .material-row:nth-child(8) { animation-delay: 0.8s; }
+    .material-row:nth-child(9) { animation-delay: 0.9s; }
+    .material-row:nth-child(10) { animation-delay: 1.0s; }
+    .material-row:nth-child(11) { animation-delay: 1.1s; }
+    .material-row:nth-child(12) { animation-delay: 1.2s; }
+    /* Efeito ao passar o mouse (Hover) */
+.material-row:hover {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  
+  /* AQUI É O PULO DO GATO: */
+  /* scale(1.1) -> Aumenta o tamanho em 10% (bem visível) */
+  /* translateY(-5px) -> Sobe um pouquinho para dar leveza */
+  transform: scale(1.1) translateY(-5px);
+
+  /* Sombra forte para parecer que está flutuando alto */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  
+  /* CRUCIAL: Traz o elemento para FRENTE de todos os outros */
+  z-index: 100;
+  position: relative; /* Necessário para o z-index funcionar bem */
+  
+  border-color: #3bb4ff; /* Borda azul */
+}
+    .checkbox-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .checkbox-area input {
+      transform: scale(1.3);
+      accent-color: #35b7ff; /* azul */
+    }
+
+    .checkbox-area span {
+      font-weight: 600;
+      color: #2f2f2f;
+    }
+
+    .info-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #6b6b6b; /* set arrow color to gray */
+    }
+
+    .play-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #6b6b6b; /* same as info-btn */
+      margin-left: 5px;
+    }
+
+    .material-row.active .checkbox-area span {
+      color: #35b7ff !important; /* azul quando ativo */
+      font-weight: 700 !important;
+    }
+    
+
+    /* ================= BOTÃO ================= */
+    .btn-next-container {
+      display: flex;
+      justify-content: center; /* Centraliza o botão avançar */
+      margin-top: 0px;
+    }
+
+    .btn-next {
+      padding: 14px 38px;
+      background: linear-gradient(90deg, #4facfe, #00c6ff);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Garante que os botões dentro da linha de ações tenham o mesmo tamanho */
+    .actions-row .btn-next {
+      min-width: 180px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ================= MODAL ================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: scroll;
+      border-radius: 20px;
+      padding: 30px;
+      position: relative;
+    }
+
+    .modal-content h3 {
+      margin-bottom: 15px;
+      color: #35b7ff; /* azul ao invés de verde */
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ================= RESPONSIVO ================= */
+    @media (max-width: 1024px) {
+      .materials-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+      .materials-container {
+        grid-template-columns: 1fr;
+      }
+    }
+/* ================= REDES SOCIAIS ================= */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 5px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10000 !important;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s, opacity 0.3s;
+  position: relative;
+  z-index: 10001 !important;
+  pointer-events: auto !important;
+}
+
+.social-links a:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+.social-links img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  pointer-events: none;
+}
+  </style>
+</head>
+
+<body>
+  <div id="particles-js"></div>
+
+<nav class="sidebar" style="z-index: 9999; position: fixed;">
+  <div class="logo-area">
+    <img src="4-transparente.png" alt="GreenLink" />
+  </div>
+
+  <a href__="#" class="menu-item active">🏠 Início</a>
+  <a href__="#" class="menu-item">📍 Pontos de Coleta</a>
+  <a href__="#" class="menu-item">🎮 Jogos</a>
+  <a href__="#" class="menu-item">📖 Cursos</a>
+  <a href__="#" class="menu-item">🔁 Transferência</a>
+  <a href__="#" class="menu-item">🗓️ Agenda de Eventos</a>
+  <a href__="#" class="menu-item">💡 Ideias criativas</a>
+  <a href__="#" class="menu-item">👤 Perfil</a>
+
+  <div class="menu-item logout-btn">🚪 Sair</div>
+
+  <!-- REDES SOCIAIS -->
+  <div class="social-links" style="position: relative; z-index: 10000;">
+    <a href="https://www.facebook.com/profile.php?id=61587428573281" target="_blank" title="Facebook" style="position: relative; z-index: 10001;">
+      <img src="facebook-logo.png" alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com/greenlink.uni9/" target="_blank" title="Instagram" style="position: relative; z-index: 10001;">
+      <img src="instagram-logo.png" alt="Instagram">
+    </a>
+    <a href="https://www.linkedin.com/in/stefany-m-2b4b2217a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" title="LinkedIn" style="position: relative; z-index: 10001;">
+      <img src="linkedin-logo.png" alt="LinkedIn">
+    </a>
+  </div>
+
+  <div class="terms-link" style="position: relative; z-index: 10000; text-align: center; margin-top: 10px;">
+    <a href="#" onclick="openTermsModal()" style="color: white; text-decoration: none; font-size: 14px;">Termos e Condições de Uso</a>
+  </div>
+</nav>
+
+  <!-- CONTEÚDO -->
+  <div class="main-content">
+    <div class="intro-card" onclick="playIntroAudio()" style="cursor: pointer;">
+      <h2>O que são Materiais Recicláveis?</h2>
+      <p>
+       <i>Materiais recicláveis são resíduos que podem ser reaproveitados e transformados em novos produtos após passarem por processos de coleta, seleção e reciclagem. Em vez de serem descartados no lixo comum e irem parar em aterros sanitários, esses materiais ganham uma nova vida útil, ajudando a reduzir o impacto ambiental.</i>
+      </p>
+      <br />
+      <strong>Selecione abaixo os materiais que você deseja reciclar hoje:</strong>
+    </div>
+
+    <form class="materials-container" id="materialForm"></form>
+
+    <div class="actions-row" style="width:100%; max-width:900px; display:flex; justify-content:space-between; gap:20px;">
+      <button type="button" class="btn-next btn-clear" id="btnLimpar">➜ Limpar</button>
+      <div class="btn-next-container">
+        <button class="btn-next" id="btnAvancar">Avançar ➜</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">×</button>
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- AUDIO PARA INTRO -->
+  <audio id="introAudio" src="o-que-sao-matetias.mp4" preload="none"></audio>
+
+  <!-- AUDIO PARA PLÁSTICOS -->
+  <audio id="plasticAudio" src="plásticos.mp4" preload="none"></audio>
+
+  <!-- SCRIPT -->
+  <script>
+    const materiais = [
+      { id: "plastico", label: "♻️ Plásticos", content: `O <b>plástico é um material sintético produzido principalmente a partir do petróleo</b>. Ele é muito utilizado no dia a dia por ser leve, resistente, flexível e barato de fabricar. Está presente em diversos objetos e embalagens que usamos constantemente. No entanto, quando descartado incorretamente, causa grande impacto ambiental, podendo gerar microplásticos que contaminam solos, rios, mares e seres vivos.<br><br>
+          <b>A reciclagem é essencial</b> para reduzir esses impactos e permitir que o plástico seja reaproveitado em novos produtos.<br><br>
+          <b>Tempo de decomposição:</b> 400 a 500 anos<br>Alguns tipos específicos podem levar até 600 anos.<br><br>
+          <b>Alguns exemplos de plásticos encontrados no dia a dia:</b><br>
+          • <i>Garrafas PET (refrigerante, água);</i><br>
+          • <i>Sacolas plásticas de supermercado;</i><br>
+          • <i>Embalagens de produtos de limpeza;</i><br>
+          • <i>Potes e tampas de alimentos;</i><br>
+          • <i>Canudos e copos descartáveis;</i><br>
+          • <i>Brinquedos;</i><br>
+          • <i>Baldes e bacias;</i><br>
+          • <i>Frascos de cosméticos (shampoo, creme);</i><br>
+          • <i>Componentes de eletrodomésticos;</i><br>
+          • <i>Plásticos filme e sacos zip.</i><br>` },
+      { id: "pilhas", label: "⚡ Pilhas e Baterias", content: `As <b>pilhas e baterias são dispositivos que armazenam energia e alimentam diversos aparelhos</b> do nosso dia a dia, como controles remotos, celulares, notebooks, lanternas e brinquedos. Elas são feitas com metais pesados e substâncias químicas que, se descartadas de forma incorreta, podem contaminar o solo, a água e o ar.<br><br>
+          Esses materiais <b>NÃO podem ser jogados no lixo comum</b>, pois liberam elementos tóxicos como mercúrio, chumbo e cádmio. O ideal é descartá-los em pontos de coleta específicos, onde passam por um processo de reciclagem e tratamento adequado.<br><br>
+          Além de evitar a contaminação ambiental, a reciclagem permite recuperar metais importantes que podem ser reutilizados na fabricação de novas baterias e outros produtos.<br><br>
+          <b>Tempo de decomposição:</b> 100 a mais de 500 anos<br>E ainda liberam metais pesados durante esse processo.<br><br>
+          <b>Alguns exemplos de pilhas e baterias:</b><br>
+          • <i>Pilhas AA e AAA;</i><br>
+          • <i>Pilhas recarregáveis;</i><br>
+          • <i>Baterias de celular;</i><br>
+          • <i>Baterias de notebook;</i><br>
+          • <i>Baterias de relógio;</i><br>
+          • <i>Baterias de câmeras fotográficas;</i><br>
+          • <i>Baterias de brinquedos eletrônicos;</i><br>
+          • <i>Baterias de controle remoto;</i><br>
+          • <i>Baterias de aparelhos médicos (ex.: medidores e monitores).</i>` },
+      { id: "poda", label: "🌳 Poda de árvores", content: `Os <b>resíduos de poda de árvores são gerados em atividades de manutenção, jardinagem e manejo de áreas verdes</b>. Esses materiais são importantes para o equilíbrio natural, mas, quando descartados de maneira incorreta, podem causar problemas urbanos e ambientais. Eles possuem grande volume e exigem destinação adequada.<br><br>
+          O descarte inadequado pode obstruir vias públicas, atrair insetos, causar mau cheiro e até contribuir para alagamentos ao bloquear bueiros. No entanto, quando corretamente processados, os resíduos de poda podem ser triturados e transformados em adubo orgânico ou cobertura vegetal para jardins.<br><br>
+          Encaminhar esse tipo de resíduo para pontos de coleta específicos ajuda no reaproveitamento dos materiais e mantém as áreas urbanas limpas e seguras.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Folhas:</b> 3 a 6 meses<br>
+          - <b>Grama:</b> 1 a 3 meses<br>
+          - <b>Galhos finos:</b> 6 meses a 1 ano<br>
+          - <b>Galhos grossos:</b> 1 a 3 anos<br>
+          - <b>Troncos:</b> até 10 anos<br><br>
+          <b>Exemplos de poda de árvores:</b><br>
+          • <i>Galhos;</i><br>
+          • <i>Folhas;</i><br>
+          • <i>Troncos de árvores;</i><br>
+          • <i>Ramos;</i><br>
+          • <i>Pedaços de madeira natural;</i><br>
+          • <i>Restos de jardinagem.</i>` },
+      { id: "organico", label: "🍎 Resíduos Orgânicos", content: `Os <b>resíduos orgânicos são materiais de origem natural que se decompõem com facilidade.</b> Eles representam grande parte do lixo produzido nas casas, restaurantes e comércios. Quando descartados corretamente, podem ser transformados em adubo por meio da compostagem, ajudando a enriquecer o solo e reduzindo o volume de lixo destinado aos aterros sanitários.<br><br>
+          No entanto, quando misturados ao lixo comum, esses resíduos podem gerar mau cheiro, atrair insetos e aumentar a produção de gás metano — um gás que contribui para o aquecimento global. Por isso, separá-los corretamente é fundamental para o meio ambiente.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Cascas e restos de comida:</b> 2 semanas a 3 meses<br>
+          - <b>Papel toalha sujo:</b> 2 a 4 semanas<br>
+          - <b>Folhas secas:</b> 3 meses<br>
+          - <b>Pedaços de madeira fina:</b> 6 meses a 1 ano<br><br>
+          <b>Exemplos de resíduos orgânicos:</b><br>
+          • <i>Restos de alimentos (arroz, feijão, massas, etc.);</i><br>
+          • <i>Cascas de frutas e legumes;</i><br>
+          • <i>Folhas, flores e galhos finos;</i><br>
+          • <i>Alimentos estragados;</i><br>
+          • <i>Borra de café e filtros de papel;</i><br>
+          • <i>Saquinhos e folhas de chá;</i><br>
+          • <i>Casca de ovo;</i><br>
+          • <i>Pães e massas;</i><br>
+          • <i>Grãos e sementes.</i><br>`},
+      { id: "vidro", label: "🍾 Vidros", content: `O <b>vidro é um material feito a partir de areia, calcário e outros minerais.</b> Sendo ele muito <b>utilizado em embalagens, utensílios domésticos e na construção civil</b> por ser resistente, higiênico e 100% reciclável. O grande diferencial do vidro é que ele pode ser reciclado infinitas vezes sem perder sua qualidade ou pureza.<br><br>
+          Mesmo tendo alta durabilidade, o descarte incorreto pode causar acidentes, ferimentos e levar anos para se decompor no meio ambiente. Por isso, é essencial separar corretamente e levar às cooperativas ou pontos específicos de reciclagem.<br><br>
+          A reciclagem do vidro reduz o consumo de energia, diminui a extração de matéria-prima e ajuda a preservar o meio ambiente.<br><br>
+          <b>Tempo de decomposição:</b> 4.000 anos ou mais<br>Em algumas condições pode nunca se decompor totalmente.<br>
+          <i><b>Mas o vidro é 100% reciclável infinitas vezes.</b></i><br><br>
+          <b>Exemplos de vidros:</b><br>
+          • <i>Garrafas (água, refrigerante, cerveja, suco);</i><br>
+          • <i>Potes e frascos de alimentos (molhos, geleias, conservas);</i><br>
+          • <i>Copos e taças;</i><br>
+          • <i>Vidros de perfumes e cosméticos;</i><br>
+          • <i>Embalagens de remédios;</i><br>
+          • <i>Frascos de produtos de higiene;</i><br>
+          • <i>Tampas e potes de vidro;</i><br>
+          • <i>Vidro de janelas e portas;</i><br>
+          • <i>Jarras e recipientes de cozinha.</i>`},
+      { id: "texteis", label: "👕 Têxteis", content: `Os <b>resíduos têxteis incluem roupas, acessórios e tecidos em geral.</b> Eles são produzidos em grande quantidade pela indústria da moda e também pelo descarte do dia a dia. A maioria dessas peças é feita de materiais que demoram muito para se decompor, como poliéster, nylon e outros sintéticos derivados do petróleo.<br><br>
+          Quando descartados de forma incorreta, os têxteis acumulam-se em aterros, liberam microfibras no meio ambiente e contribuem para a poluição. A melhor forma de destiná-los é por meio da doação, reutilização, reciclagem têxtil ou encaminhamento para pontos de coleta específicos.<br><br>
+          Dar uma nova vida às roupas e tecidos ajuda a reduzir o impacto ambiental e diminui a necessidade de produzir novos materiais.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Algodão:</b> 5 a 6 meses<br>
+          - <b>Lã:</b> 1 a 5 anos<br>
+          - <b>Poliéster e tecidos sintéticos:</b> 50 a 200 anos<br>
+          - <b>Nylon:</b> 30 a 40 anos<br><br>
+          <b>Exemplos de têxteis:</b><br>
+          • <i>Roupas (camisetas, calças, blusas, casacos);</i><br>
+          • <i>Toalhas e panos de prato;</i><br>
+          • <i>Lençóis, cobertores e fronhas;</i><br>
+          • <i>Cortinas e capas;</i><br>
+          • <i>Tênis e calçados em geral;</i><br>
+          • <i>Bolsas, mochilas e acessórios;</i><br>
+          • <i>Retalhos de tecidos;</i><br>
+          • <i>Uniformes e roupas de trabalho;</i><br>
+          • <i>Roupas íntimas e meias;</i><br>
+          • <i>Tecidos sintéticos e naturais diversos.</i>`},
+      { id: "eletronico", label: "💻 Lixo Eletrônico", content: `O <b>lixo eletrônico é composto por aparelhos, peças e acessórios tecnológicos</b> que não têm mais uso. Esses materiais possuem componentes valiosos, como cobre, ouro e alumínio, mas também contêm substâncias perigosas, como chumbo e mercúrio. Por isso, <b>não podem ser jogados no lixo comum.</b><br><br>
+          Quando descartados incorretamente, os eletrônicos podem contaminar o solo e a água, além de liberar gases tóxicos. A reciclagem adequada permite recuperar metais importantes e evitar danos ao meio ambiente. Muitos pontos de coleta e cooperativas especializadas recebem esse tipo de resíduo.<br><br>
+          Separar e encaminhar corretamente o e-lixo é uma forma de proteger a natureza e contribuir para o reaproveitamento de materiais.<br><br>
+          <b>Tempo de decomposição:</b> 100 a 500 anos<br>Depende do tipo do equipamento e dos metais presentes.<br><br>
+          <b>Exemplos de lixo eletrônico:</b><br>
+          • <i>Celulares e smartphones;</i><br>
+          • <i>Notebooks e computadores;</i><br>
+          • <i>Carregadores, cabos e fontes;</i><br>
+          • <i>Televisores e monitores;</i><br>
+          • <i>Impressoras;</i><br>
+          • <i>Tablets e e-readers;</i><br>
+          • <i>Teclados e mouses;</i><br>
+          • <i>Fones de ouvido;</i><br>
+          • <i>Caixas de som;</i><br>
+          • <i>Peças e placas eletrônicas internas.</i>`},
+      { id: "papel", label: "📰 Papéis e Papelões", content: `O <b>papel é um material produzido a partir de fibras vegetais</b>, principalmente celulose. Ele está presente em diversos produtos do dia a dia e é um dos materiais <b>mais fáceis e comuns de reciclar.</b> Quando separado corretamente, pode ser transformado em novos papéis, caixas, embalagens e outros itens, reduzindo a necessidade de cortar mais árvores.<br><br>
+          No entanto, quando misturado ao lixo orgânico ou sujo de gordura, o papel perde sua capacidade de reciclagem. Por isso, é importante descartar apenas papéis limpos e secos nos pontos de coleta ou nas lixeiras de reciclagem.<br><br>
+          A reciclagem do papel ajuda a preservar florestas, economizar água e diminuir o volume de resíduos enviados aos aterros sanitários.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Papel comum:</b> 2 a 6 semanas<br>
+          - <b>Papelão:</b> 2 meses<br>
+          - <b>Papel kraft:</b> 1 a 3 meses<br>
+          <i><b>Obs.: Quando sujo de gordura, não pode ser reciclado.</b></i><br><br>
+          <b>Exemplos de papéis recicláveis:</b><br>
+          • <i>Jornais e revistas;</i><br>
+          • <i>Cadernos e folhas de sulfite;</i><br>
+          • <i>Caixas de papelão;</i><br>
+          • <i>Embalagens de papel (limpas e secas);</i><br>
+          • <i>Sacolas de papel;</i><br>
+          • <i>Envelopes;</i><br>
+          • <i>Papéis de escritório;</i><br>
+          • <i>Anotações e impressões;</i><br>
+          • <i>Papel kraft;</i><br>
+          • <i>Rascunhos diversos.</i>`},
+      { id: "metal", label: "🥫 Alumínio/Metais", content: `O alumínio e outros metais são materiais muito utilizados na fabricação de embalagens, utensílios, ferramentas e peças industriais. Eles se destacam por serem resistentes, duráveis e altamente recicláveis. O alumínio, por exemplo, pode ser reciclado infinitas vezes sem perder sua qualidade, economizando até 95% de energia quando comparado à produção a partir da matéria-prima original.<br><br>
+          Quando descartados incorretamente, os metais podem levar muitos anos para se decompor e acabam ocupando espaço em aterros, além de desperdiçar recursos valiosos. A reciclagem é fundamental para reaproveitar esses materiais e reduzir o impacto ambiental.<br><br>
+          Encaminhar metais para pontos de coleta ou cooperativas ajuda a preservar recursos naturais, diminui o consumo de energia e evita a extração de novas matérias-primas.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Alumínio (latas):</b> 200 a 500 anos<br>
+          - <b>Ferro:</b> 50 anos<br>
+          - <b>Aço:</b> 100 anos<br>
+          - <b>Cobre:</b> 200 anos<br>
+          - <b>Metal misto:</b> 100 a 400 anos<br><br>
+          <b>Exemplos de alumínio e metais:</b><br>
+          • <i>Latas de bebidas (alumínio);</i><br>
+          • <i>Latas de alimentos (ex.: milho, ervilha, extrato de tomate);</i><br>
+          • <i>Folhas de alumínio;</i><br>
+          • <i>Panelas e utensílios metálicos;</i><br>
+          • <i>Tampas e lacres de metal;</i><br>
+          • <i>Ferramentas antigas;</i><br>
+          • <i>Cabos metálicos;</i><br>
+          • <i>Peças de eletrodomésticos;</i><br>
+          • <i>Arames e pregos;</i><br>
+          • <i>Objetos de aço, ferro, cobre ou latão.</i>`},
+       { id: "entulho", label: "🧱 Entulho", content: `O <b>entulho é formado por materiais resultantes de obras, reformas e demolições.</b> Ele é muito utilizado em processos construtivos e, quando descartado corretamente, pode ser reaproveitado de várias maneiras. Esses resíduos são comuns na construção civil e apresentam grande volume e peso.<br><br>
+          Quando descartados de forma irregular, os resíduos de construção ocupam espaços públicos, entopem bueiros e contribuem para enchentes e degradação urbana. Além disso, o acúmulo em locais impróprios representa desperdício de materiais que poderiam ser reciclados.<br><br>
+          Encaminhar entulho para ecopontos ou unidades de reciclagem contribui para reaproveitar esses materiais, transformando-os em brita, areia reciclada e outros insumos para novas construções.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Concreto:</b> cerca de 500 anos<br>
+          - <b>Tijolos:</b> aproximadamente 600 anos<br>
+          - <b>Cerâmica e pisos:</b> até 1.000 anos<br>
+          - <b>Gesso:</b> cerca de 1 ano<br>
+          - <b>Madeira tratada:</b> até 13 anos<br>
+          - <b>Telhas (cerâmica ou barro):</b> até 1.000 anos<br><br>
+          <b>Exemplos de entulho:</b><br>
+          • <i>Tijolos;</i><br>
+          • <i>Concreto;</i><br>
+          • <i>Cimento endurecido;</i><br>
+          • <i>Azulejos;</i><br>
+          • <i>Telhas;</i><br>
+          • <i>Gesso;</i><br>
+          • <i>Cerâmicas;</i><br>
+          • <i>Restos de piso.</i>`},
+      {  id: "oleo", label: "🧴 Óleo de Cozinha", content: `O óleo de cozinha usado é um <b>material muito presente no dia a dia</b>, principalmente em processos de fritura e preparo de alimentos. Ele é versátil e útil em diversas receitas, mas quando descartado incorretamente se torna extremamente prejudicial ao meio ambiente. Pequenas quantidades são suficientes para contaminar água e solo, além de causar entupimentos e mau funcionamento das redes de esgoto.<br><br>
+          <b>O descarte inadequado contribui para poluição hídrica e problemas urbanos</b>, dificultando o tratamento da água e aumentando os custos públicos. A reciclagem do óleo usado permite transformá-lo em produtos como sabão e biodiesel, reduzindo o impacto ambiental e evitando danos às tubulações.<br><br>
+          Encaminhar o óleo de cozinha para pontos de coleta ou armazená-lo em garrafas PET é uma forma segura e sustentável de dar um destino correto ao material.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Óleo de cozinha (geral):</b> Não se decompõe de forma adequada<br>
+          - <b>Azeites e óleos vegetais:</b> indeterminável<br>
+          - <b>Gorduras líquidas:</b> indeterminável<br><br>
+          <b>Exemplos de óleo de cozinha:</b><br>
+          • <i>Óleo de fritura;</i><br>
+          • <i>Óleo de soja;</i><br>
+          • <i>Óleo de milho;</i><br>
+          • <i>Óleo de girassol;</i><br>
+          • <i>Azeite usado;</i><br>
+          • <i>Gordura vegetal reutilizada.</i>`},
+      { id: "moveis", label: "🛋️ Móveis", content: `Os <b>móveis fazem parte do cotidiano e são usados em casas, escritórios e diversos ambientes.</b> Com o tempo, muitos deles perdem a utilidade, se desgastam ou quebram. Por serem volumosos e compostos de diferentes materiais, precisam de destinação correta para evitar impactos ambientais e urbanos.<br><br>
+          Quando descartados de forma inadequada, móveis podem ocupar calçadas, atrapalhar a circulação, atrair insetos e causar poluição visual. Além disso, o acúmulo em vias públicas compromete a drenagem e pode gerar riscos para a população.<br><br>
+          Encaminhar móveis para ecopontos, pontos de coleta específicos ou serviços de retirada é fundamental para garantir o descarte correto. Muitos itens ainda podem ser reaproveitados, doados ou desmontados para reciclagem de suas partes.<br><br>
+          <b>Tempo de decomposição:</b><br>
+          - <b>Madeira (móveis):</b> 10 a 15 anos<br>
+          - <b>Espuma de colchão:</b> entre 200 e 300 anos<br>
+          - <b>Tecidos:</b> de 6 meses a 1 ano (natural) / 30 a 40 anos (sintético)<br>
+          - <b>Metal presente em móveis:</b> 100 a 500 anos<br>
+          - <b>Plástico presente em móveis:</b> 400 a 500 anos<br><br>
+          <b>Exemplos de móveis:</b><br>
+          • <i>Sofás;</i><br>
+          • <i>Camas;</i><br>
+          • <i>Colchões;</i><br>
+          • <i>Guarda-roupas;</i><br>
+          • <i>Mesas;</i><br>
+          • <i>Cadeiras;</i><br>
+          • <i>Estantes;</i><br>
+          • <i>Móveis de madeira ou metal.</i>`}
+        ]
+
+    const container = document.getElementById("materialForm");
+
+    materiais.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "material-row";
+
+      if (item.id === 'plastico') {
+        row.onclick = () => playPlasticAudio();
+        row.style.cursor = 'pointer';
+      }
+
+      row.innerHTML = `
+        <label class="checkbox-area">
+          <input type="checkbox" value="${item.id}">
+          <span>${item.label}</span>
+        </label>
+        <button type="button" class="info-btn" data-id="${item.id}">➜</button>
+      `;
+
+      const btn = row.querySelector(".info-btn");
+      btn.addEventListener("click", () => openModal(item.id));
+
+      container.appendChild(row);
+    });
+
+    const modal = document.getElementById("infoModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+
+    function openModal(materialId) {
+      const material = materiais.find(m => m.id === materialId);
+      if (material) {
+        document.querySelectorAll(".material-row").forEach(row => row.classList.remove("active"));
+        event.target.closest(".material-row").classList.add("active");
+        modalTitle.innerText = material.label;
+        modalBody.innerHTML = material.content;
+        modal.classList.add("open");
+      }
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+      document.querySelectorAll(".material-row").forEach(row => row.classList.remove("active"));
+    }
+
+    function playTermsAudio() {
+      const audio = document.getElementById('termsAudio');
+      audio.play();
+    }
+
+    function playIntroAudio() {
+      const audio = document.getElementById('introAudio');
+      audio.play();
+    }
+
+    function playPlasticAudio() {
+      const audio = document.getElementById('plasticAudio');
+      audio.play();
+    }
+
+    function openTermsModal() {
+      modalTitle.innerHTML = `Termos e Condições de Uso <button onclick="playTermsAudio()" style="float: right; background: none; border: none; font-size: 24px; cursor: pointer;" title="Ouvir termos">🔊</button>`;
+      modalBody.innerHTML = `<small>Última atualização: 30/01/2026<br><br>
+
+Bem-vindo(a) à GreenLink. Ao acessar ou utilizar a plataforma GreenLink, seja por meio de site, aplicativo ou qualquer outro canal digital vinculado, o usuário declara ter lido, compreendido e concordado integralmente com os presentes Termos e Condições de Uso, que regulam a relação entre a GreenLink e seus usuários, estabelecendo direitos, deveres e responsabilidades decorrentes da utilização dos serviços oferecidos.<br><br>
+
+A GreenLink é uma iniciativa de caráter socioambiental que tem como finalidade incentivar a reciclagem, a sustentabilidade e o descarte correto de resíduos em ecopontos e pontos de coleta credenciados, promovendo a conscientização ambiental e oferecendo, como forma de incentivo, benefícios aos usuários, que poderão incluir bonificações em gigabits e/ou megabits de internet, passíveis de conversão em descontos em boletos de pagamento ou outras vantagens, conforme regras vigentes à época da utilização da plataforma.<br><br>
+
+Ao utilizar os serviços da GreenLink, o usuário declara possuir capacidade legal para celebrar este acordo, comprometendo-se a fornecer informações verdadeiras, completas e atualizadas durante o cadastro e a manter a confidencialidade de seus dados de acesso, responsabilizando-se integralmente por todas as atividades realizadas em sua conta. A GreenLink não se responsabiliza por prejuízos decorrentes do uso indevido da conta por terceiros, quando não houver falha comprovada na segurança da plataforma.<br><br>
+
+A GreenLink poderá, a seu critério, solicitar informações adicionais para validação do cadastro, bem como suspender ou cancelar contas em caso de suspeita de fraude, fornecimento de dados falsos, uso indevido da plataforma ou qualquer conduta que viole estes Termos ou a legislação vigente. O usuário compromete-se a utilizar a plataforma de forma ética, responsável e legal, abstendo-se de praticar qualquer ato que possa prejudicar a GreenLink, outros usuários ou terceiros.<br><br>
+
+O programa de benefícios oferecido pela GreenLink baseia-se no incentivo ao descarte correto de resíduos em locais apropriados, podendo as regras de pontuação, conversão, validade e utilização dos benefícios serem alteradas, suspensas ou canceladas a qualquer momento, sem aviso prévio, de acordo com critérios operacionais, estratégicos ou legais. A GreenLink não garante disponibilidade contínua ou vitalícia de qualquer benefício, reservando-se o direito de revisar suas políticas sempre que necessário.<br><br>
+
+No que diz respeito à privacidade e à proteção de dados pessoais, a GreenLink atua em conformidade com a Lei nº 12.965, de 23 de abril de 2014 (Marco Civil da Internet), e com a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados – LGPD), adotando medidas técnicas e administrativas adequadas para garantir a segurança das informações coletadas, protegendo-as contra acessos não autorizados, vazamentos, alterações indevidas ou qualquer forma de uso inadequado. Os dados pessoais fornecidos pelos usuários serão utilizados exclusivamente para finalidades relacionadas ao funcionamento da plataforma, como identificação do usuário, liberação de benefícios, comunicação institucional, melhorias de serviço e cumprimento de obrigações legais.<br><br>
+
+A GreenLink compromete-se a não comercializar dados pessoais dos usuários e a tratá-los com o mais alto padrão de confidencialidade e segurança. No entanto, embora sejam adotadas as melhores práticas de proteção da informação, nenhum sistema é totalmente imune a riscos, motivo pelo qual, em caso de incidentes de segurança que possam gerar risco ou dano relevante ao usuário, este será devidamente informado, conforme previsto na legislação aplicável.<br><br>
+
+O usuário poderá, a qualquer momento, solicitar acesso aos seus dados pessoais, correção de informações incompletas ou desatualizadas, exclusão de dados desnecessários, revogação do consentimento ou esclarecimentos sobre o tratamento de suas informações, por meio dos canais oficiais de atendimento da GreenLink.<br><br>
+
+Todo o conteúdo disponibilizado na plataforma, incluindo marca, logotipo, layout, design, textos, imagens, tecnologias e demais elementos, é protegido por direitos autorais e de propriedade intelectual, sendo proibida a reprodução, distribuição ou utilização sem autorização prévia e expressa da GreenLink.<br><br>
+
+A GreenLink não se responsabiliza por falhas decorrentes de problemas de conexão à internet, indisponibilidade temporária do sistema, erros provenientes de terceiros, nem por danos causados por uso indevido da plataforma ou pelo fornecimento de informações incorretas por parte do usuário. A plataforma é disponibilizada da forma como se encontra, podendo passar por atualizações, manutenções ou melhorias a qualquer momento.<br><br>
+
+A GreenLink reserva-se o direito de alterar, atualizar ou modificar estes Termos e Condições de Uso sempre que necessário, sendo responsabilidade do usuário consultar periodicamente o conteúdo deste documento. A continuidade do uso da plataforma após eventuais alterações constitui aceitação automática das novas condições.<br><br>
+
+Estes Termos serão regidos pelas leis da República Federativa do Brasil, ficando eleito o foro da comarca do domicílio do usuário como competente para dirimir quaisquer controvérsias oriundas deste documento, salvo disposição legal em contrário.<br><br>
+
+Ao continuar utilizando a plataforma GreenLink, o usuário declara sua concordância plena e irrestrita com todas as disposições aqui estabelecidas, comprometendo-se a respeitar as normas, princípios e objetivos que norteiam a iniciativa, contribuindo para a promoção da sustentabilidade, da responsabilidade ambiental e do bem coletivo.<br><br>
+
+<input type="checkbox" id="agreeTerms" style="margin-right: 10px;"> <label for="agreeTerms" style="font-weight: bold;">Li e Concordo com os termos e condições de uso.</label></small>`;
+      modal.classList.add("open");
+    }
+
+    document.getElementById("btnAvancar").addEventListener("click", e => {
+      e.preventDefault();
+      alert("Materiais salvos com sucesso!");
+    });
+
+    // Botão Limpar: desmarca todas as checkboxes e remove estados ativos
+    const btnLimpar = document.getElementById('btnLimpar');
+    if (btnLimpar) {
+      btnLimpar.addEventListener('click', () => {
+        document.querySelectorAll('#materialForm input[type="checkbox"]').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.material-row').forEach(r => r.classList.remove('active'));
+      });
+    }
+  </script>
+
+  <!-- ===== LINKA - ASSISTENTE VIRTUAL ===== -->
+  <!-- ESTILO LINKA -->
+<style>
+  :root {
+    --linka-size: 200px;
+  }
+
+  /* Animações */
+  @keyframes entradaLinka {
+    0% { opacity: 0; transform: translateY(60px) scale(0.6); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes flutuar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* BOTÃO FLUTUANTE */
+  .linka-btn {
+    position: fixed;
+    bottom: 18px; 
+    right: 18px;  
+    width: var(--linka-size);
+    height: var(--linka-size);
+    cursor: pointer;
+    z-index: 9999;
+    animation: entradaLinka 1s ease-out forwards, flutuar 3s ease-in-out infinite 1s;
+    background: transparent;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .linka-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    transition: transform 0.3s;
+  }
+  .linka-btn:hover img { transform: scale(1.1); }
+
+  /* JANELA DO CHAT */
+  .linka-chat {
+    position: fixed;
+    bottom: 150px; 
+    right: 20px;   
+    width: 340px;
+    height: 450px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    z-index: 9998;
+    border: 1px solid rgba(255,255,255,0.6);
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* HEADER */
+  .linka-header {
+    background: linear-gradient(135deg, #6ee57a 0%, #3bb4ff 100%);
+    color: #fff;
+    padding: 15px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .linka-header button { background: none; border: none; font-size: 20px; cursor: pointer; color: white; }
+
+  /* MENSAGENS */
+  .linka-messages {
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+    font-size: 14px;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .linka-msg { padding: 10px 14px; border-radius: 12px; max-width: 85%; line-height: 1.4; word-wrap: break-word; }
+  .linka-msg.bot { background: #fff; color: #333; border: 1px solid #e0e0e0; align-self: flex-start; border-radius: 12px 12px 12px 0; }
+  .linka-msg.user { background: #3bb4ff; color: #fff; align-self: flex-end; border-radius: 12px 12px 0 12px; }
+  .linka-msg.loading { background: none; border: none; color: #888; font-style: italic; font-size: 12px; align-self: flex-start; }
+
+  /* INPUT */
+  .linka-input { display: flex; padding: 12px; gap: 8px; background: #fff; border-top: 1px solid #eee; }
+  .linka-input input { flex: 1; padding: 10px 15px; border-radius: 20px; border: 1px solid #ddd; outline: none; background: #f1f3f5; }
+  .linka-input button { width: 40px; height: 40px; border: none; background: #3bb4ff; color: #fff; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+  .linka-input button:hover { background: #2a9df4; }
+
+  .cursor-blink::after { content: '|'; display: inline-block; margin-left: 2px; animation: piscar 0.7s infinite; color: #3bb4ff; }
+  @keyframes piscar { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+</style>
+
+<div class="linka-btn" onclick="toggleLinka()" title="Falar com Linka">
+  <img src="Linka_Assistente_Virtual.png" alt="Linka">
+</div>
+
+<div class="linka-chat" id="linkaChat">
+  <div class="linka-header">
+    <div style="display:flex; align-items:center; gap:10px;">
+        <img src="Linka_Assistente_Virtual.png" style="width:30px; height:30px; border-radius:50%; background:white; padding:2px; object-fit:cover;">
+        <span>Linka IA</span>
+    </div>
+    <button onclick="toggleLinka()">✖</button>
+  </div>
+
+  <div class="linka-messages" id="linkaMessages">
+    <div class="linka-msg bot" id="msgInicialLinka"></div>
+  </div>
+
+  <div class="linka-input">
+    <input type="text" id="linkaInput" placeholder="Digite sua dúvida..." onkeypress="checkEnter(event)"/>
+    <button onclick="sendLinka()">➤</button>
+  </div>
+</div>
+
+<script>
+  let jaDigitou = false; 
+  const elementoDestino = document.getElementById("msgInicialLinka");
+  
+  // ✅ Texto Inicial (Com emojis protegidos)
+  const textoHTML = "\uD83D\uDC4B <i>Olá, <b>Stefany!</b> Sou a <b><i>Linka</i></b>, assistente virtual da <b>GreenLink</b></i> <span class='emoji'>\uD83C\uDF31</span>. <br><br><i>Estou aqui para te ajudar a navegar pela plataforma, tirar dúvidas e tornar sua experiência mais <b>simples, prática e sustentável</b>.</i> <span class='emoji'>\u267B\uFE0F</span>";
+
+  function toggleLinka() {
+    const chat = document.getElementById("linkaChat");
+    if (chat.style.display === "flex") {
+      chat.style.display = "none";
+    } else {
+      chat.style.display = "flex";
+      if (!jaDigitou) {
+        elementoDestino.classList.add("cursor-blink");
+        digitarHTML(elementoDestino, textoHTML).then(() => {
+          elementoDestino.classList.remove("cursor-blink");
+        });
+        jaDigitou = true;
+      }
+      setTimeout(() => document.getElementById('linkaInput').focus(), 100);
+    }
+  }
+
+  function checkEnter(event) { if (event.key === "Enter") sendLinka(); }
+
+  function sendLinka() {
+    const input = document.getElementById("linkaInput");
+    const messages = document.getElementById("linkaMessages");
+    const textoUsuario = input.value.trim();
+    if (!textoUsuario) return;
+
+    messages.innerHTML += `<div class="linka-msg user">${textoUsuario}</div>`;
+    input.value = "";
+    rolarParaBaixo();
+
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'linka-msg loading';
+    loadingDiv.innerText = "Linka está digitando...";
+    messages.appendChild(loadingDiv);
+    rolarParaBaixo();
+
+    setTimeout(async () => {
+        messages.removeChild(loadingDiv);
+        const resposta = gerarRespostaInteligente(textoUsuario);
+        const botDiv = document.createElement('div');
+        botDiv.className = 'linka-msg bot cursor-blink';
+        messages.appendChild(botDiv);
+        await digitarHTML(botDiv, resposta);
+        botDiv.classList.remove("cursor-blink");
+        rolarParaBaixo();
+    }, 1200);
+  }
+
+  // 🧠 CÉREBRO DA LINKA (COM NOVA PERGUNTA + EMOJIS SEGUROS) 🧠
+  function gerarRespostaInteligente(texto) {
+    const t = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    // Função auxiliar para proteger emojis
+    const emoji = (codigo) => `<span class='emoji'>${codigo}</span>`;
+
+    // 1. SAUDAÇÕES
+    if (t === 'ola' || t === 'oi' || t.includes('bom dia') || t.includes('boa tarde')) 
+      return `Oiii! Tudo bem? ${emoji('\uD83C\uDF31')} Vamos reciclar hoje?`;
+
+    // ⭐ NOVA LÓGICA: COMO RECICLAR
+    if (t.includes('como') && (t.includes('reciclar') || t.includes('separar'))) {
+        return `Para reciclar, separe os resíduos por tipo (papel, plástico, vidro e metal), mantenha-os limpos e secos e descarte em locais de coleta seletiva ou ecopontos ${emoji('\u267B\uFE0F')}`;
+    }
+
+    // 2. TEMPO DE DECOMPOSIÇÃO
+    if (t.includes('quanto tempo') || t.includes('decompo')) {
+        if (t.includes('plastico')) return `<i>O <b>plástico</b> pode levar mais de 400 anos ${emoji('\u23F3')}</i>`;
+        if (t.includes('organico')) return `<i>Os <b>resíduos orgânicos</b> levam de semanas a alguns meses. ${emoji('\uD83C\uDF3F')}</i>`;
+        if (t.includes('eletronico')) return `<i>Os <b>lixos eletrônicos</b> podem levar centenas de anos! ${emoji('\u26A0\uFE0F')}</i>`;
+        if (t.includes('entulho')) return "Os <b>entulhos</b> não se decompõem facilmente e podem permanecer por séculos.";
+        if (t.includes('pilha') || t.includes('bateria')) return `<i>As <b>pilhas</b> levam mais de 100 anos e contaminam o solo! ${emoji('\u26A0\uFE0F')}</i>`;
+        if (t.includes('vidro')) return `<i>Os <b>vidros</b> podem levar milhares de anos, mas podem ser reutilizados infinitamente!</i>`;
+        if (t.includes('papel')) return `<i>Os <b>papéis</b> levam de 3 a 6 meses ${emoji('\uD83D\uDCC4')}</i>`;
+        if (t.includes('oleo')) return `<i>O <b>óleo</b> pode levar muitos anos e poluir a água ${emoji('\uD83D\uDCA7')}</i>`;
+        if (t.includes('poda')) return `<i>As <b>podas</b> levam de alguns meses a poucos anos ${emoji('\uD83C\uDF33')}</i>`;
+        if (t.includes('metal')) return `<i>Os <b>metais</b> levam de 200 a 500 anos ${emoji('\uD83E\uDD6B')}</i>`;
+        if (t.includes('moveis')) return `<i>Os <b>móveis</b> podem levar décadas. ${emoji('\uD83D\uDECB\uFE0F')}</i>`;
+        if (t.includes('textil')) return `<i>Os <b>resíduos têxteis</b> variam: Algodão (5 meses) a Poliéster (200 anos) ${emoji('\uD83D\uDC55')}</i>`;
+    }
+
+// 3. EXEMPLOS COMPLETOS (Sua atualização aqui 👇)
+    if (t.includes('exemplo') || t.includes('quais sao') || t.includes('cite')) {
+        if (t.includes('plastico')) return `Claro, <b>alguns exemplos de plásticos encontrados no dia a dia são:</b><br>• <i>Garrafas PET (refrigerante, água);</i><br>• <i>Sacolas plásticas de supermercado;</i><br>• <i>Embalagens de produtos de limpeza;</i><br>• <i>Potes e tampas de alimentos;</i><br>• <i>Canudos e copos descartáveis;</i><br>• <i>Brinquedos;</i><br>• <i>Baldes e bacias;</i><br>• <i>Frascos de cosméticos (shampoo, creme);</i><br>• <i>Componentes de eletrodomésticos;</i><br>• <i>Plásticos filme e sacos zip.</i>`;
+        if (t.includes('organico')) return `Claro,<b>alguns exemplos de resíduos orgânicos são:</b><br>• <i>Restos de alimentos (arroz, feijão, massas, etc.);</i><br>• <i>Cascas de frutas e legumes;</i><br>• <i>Folhas, flores e galhos finos;</i><br>• <i>Alimentos estragados;</i><br>• <i>Borra de café e filtros de papel;</i><br>• <i>Saquinhos e folhas de chá;</i><br>• <i>Casca de ovo;</i><br>• <i>Pães e massas;</i><br>• <i>Grãos e sementes.</i>`;
+        if (t.includes('eletronico')) return `Claro,<b>alguns exemplos de lixo eletrônico são:</b><br>• <i>Celulares e smartphones;</i><br>• <i>Notebooks e computadores;</i><br>• <i>Carregadores, cabos e fontes;</i><br>• <i>Televisores e monitores;</i><br>• <i>Impressoras;</i><br>• <i>Tablets e e-readers;</i><br>• <i>Teclados e mouses;</i><br>• <i>Fones de ouvido;</i><br>• <i>Caixas de som;</i><br>• <i>Peças e placas eletrônicas internas.</i>`;
+        if (t.includes('entulho')) return `Claro,<b>alguns exemplos de entulho são:</b><br>• <i>Tijolos;</i><br>• <i>Concreto;</i><br>• <i>Cimento endurecido;</i><br>• <i>Azulejos;</i><br>• <i>Telhas;</i><br>• <i>Gesso;</i><br>• <i>Cerâmicas;</i><br>• <i>Restos de piso.</i>`;
+        if (t.includes('pilha') || t.includes('bateria')) return `Claro,<b>alguns exemplos de pilhas e baterias são:</b><br>• <i>Pilhas AA e AAA;</i><br>• <i>Pilhas recarregáveis;</i><br>• <i>Baterias de celular;</i><br>• <i>Baterias de notebook;</i><br>• <i>Baterias de relógio;</i><br>• <i>Baterias de câmeras fotográficas;</i><br>• <i>Baterias de brinquedos eletrônicos;</i><br>• <i>Baterias de controle remoto;</i><br>• <i>Baterias de aparelhos médicos (ex.: medidores e monitores).</i>`;
+        if (t.includes('vidro')) return `Claro,<b>alguns exemplos de vidros são:</b><br>• <i>Garrafas (água, refrigerante, cerveja, suco);</i><br>• <i>Potes e frascos de alimentos (molhos, geleias, conservas);</i><br>• <i>Copos e taças;</i><br>• <i>Vidros de perfumes e cosméticos;</i><br>• <i>Embalagens de remédios;</i><br>• <i>Frascos de produtos de higiene;</i><br>• <i>Tampas e potes de vidro;</i><br>• <i>Vidro de janelas e portas;</i><br>• <i>Jarras e recipientes de cozinha.</i>`;
+        if (t.includes('papel')) return `Claro,<b>alguns exemplos de papéis recicláveis:</b><br>• <i>Jornais e revistas;</i><br>• <i>Cadernos e folhas de sulfite;</i><br>• <i>Caixas de papelão;</i><br>• <i>Embalagens de papel (limpas e secas);</i><br>• <i>Sacolas de papel;</i><br>• <i>Envelopes;</i><br>• <i>Papéis de escritório;</i><br>• <i>Anotações e impressões;</i><br>• <i>Papel kraft;</i><br>• <i>Rascunhos diversos.</i>`;
+        if (t.includes('oleo')) return `Claro,<b>alguns exemplos de óleo de cozinha são:</b><br>• <i>Óleo de fritura;</i><br>• <i>Óleo de soja;</i><br>• <i>Óleo de milho;</i><br>• <i>Óleo de girassol;</i><br>• <i>Azeite usado;</i><br>• <i>Gordura vegetal reutilizada.</i>`;
+        if (t.includes('poda') || t.includes('arvore')) return `Claro,<b>alguns exemplos de poda de árvores:</b><br>• <i>Galhos;</i><br>• <i>Folhas;</i><br>• <i>Troncos de árvores;</i><br>• <i>Ramos;</i><br>• <i>Pedaços de madeira natural;</i><br>• <i>Restos de jardinagem.</i>`;
+        if (t.includes('textil') || t.includes('roupa') || t.includes('tecido')) return `Claro,<b>alguns exemplos de têxteis são:</b><br>• <i>Roupas (camisetas, calças, blusas, casacos);</i><br>• <i>Toalhas e panos de prato;</i><br>• <i>Lençóis, cobertores e fronhas;</i><br>• <i>Cortinas e capas;</i><br>• <i>Tênis e calçados em geral;</i><br>• <i>Bolsas, mochilas e acessórios;</i><br>• <i>Retalhos de tecidos;</i><br>• <i>Uniformes e roupas de trabalho;</i><br>• <i>Roupas íntimas e meias;</i><br>• <i>Tecidos sintéticos e naturais diversos.</i>`;
+        if (t.includes('metal') || t.includes('aluminio')) return `Claro,<b>alguns exemplos de alumínio e metais são:</b><br>• <i>Latas de bebidas (alumínio);</i><br>• <i>Latas de alimentos (ex.: milho, ervilha, extrato de tomate);</i><br>• <i>Folhas de alumínio;</i><br>• <i>Panelas e utensílios metálicos;</i><br>• <i>Tampas e lacres de metal;</i><br>• <i>Ferramentas antigas;</i><br>• <i>Cabos metálicos;</i><br>• <i>Peças de eletrodomésticos;</i><br>• <i>Arames e pregos;</i><br>• <i>Objetos de aço, ferro, cobre ou latão.</i>`;
+        if (t.includes('moveis') || t.includes('movel')) return `Claro,<b>alguns exemplos de móveis são:</b><br>• <i>Sofás;</i><br>• <i>Camas;</i><br>• <i>Colchões;</i><br>• <i>Guarda-roupas;</i><br>• <i>Mesas;</i><br>• <i>Cadeiras;</i><br>• <i>Estantes;</i><br>• <i>Móveis de madeira ou metal.</i>`;
+    }
+    // 4. DEFINIÇÕES
+    if (t.includes('sustentavel') && !t.includes('sustentabilidade')) 
+         return `<b>Sustentável</b> é aquilo que atende às necessidades atuais sem prejudicar o futuro ${emoji('\uD83C\uDF31')}`;
+
+    if (t.includes('sustentabilidade')) {
+        if (t.includes('o que e') || t.includes('definicao')) return `É o uso consciente dos recursos naturais, pensando no presente e no futuro ${emoji('\uD83C\uDF0D')}`;
+        if (t.includes('importante')) return `Porque ajuda a preservar o meio ambiente e melhora a qualidade de vida ${emoji('\uD83D\uDC9A')}`;
+        if (t.includes('fazer')) return `Reduzir desperdícios, reciclar e consumir de forma consciente ${emoji('\u267B\uFE0F')}`;
+    }
+    
+    // Definições gerais
+    if (t.includes('reciclar')) return `Reutilizar é usar novamente; reciclar é transformar em um novo produto ${emoji('\uD83D\uDD04')}`;
+    if (t.includes('economia circular')) return `É um modelo que reaproveita recursos e reduz desperdícios ${emoji('\uD83D\uDD01')}`;
+    if (t.includes('pequenas atitudes')) return `Sim. A soma de pequenas ações gera grandes impactos ${emoji('\u2728')}`;
+    if (t.includes('todo plastico')) return `Não. Apenas alguns tipos de plástico podem ser reciclados ${emoji('\u26A0\uFE0F')}`;
+    if (t.includes('agua')) return `Evite desperdícios e use a água de forma consciente ${emoji('\uD83D\uDEBF')}`;
+    if (t.includes('energia')) return `Utilize lâmpadas LED e desligue aparelhos ${emoji('\uD83D\uDCA1')}`;
+
+    // O que é... (com proteção de emojis)
+    if (t.includes('o que e') || t.includes('o que sao')) {
+        if (t.includes('plastico')) return `É um material sintético muito usado no dia a dia, leve e resistente, mas que demora a se decompor ${emoji('\u267B\uFE0F')}`;
+        if (t.includes('organico')) return `São restos de alimentos e materiais de origem natural ${emoji('\uD83C\uDF3F')}`;
+        if (t.includes('eletronico')) return `São equipamentos eletrônicos descartados (celulares, cabos) ${emoji('\uD83D\uDCBB')}`;
+        if (t.includes('pilha')) return `São fontes de energia com químicas perigosas ${emoji('\u26A0\uFE0F')}`;
+        if (t.includes('papel')) return `Materiais derivados da celulose ${emoji('\uD83D\uDCC4')}`;
+        if (t.includes('oleo')) return `Óleo de cozinha usado (não jogue no ralo!) ${emoji('\uD83D\uDCA7')}`;
+        if (t.includes('poda')) return `Restos vegetais como galhos e folhas ${emoji('\uD83C\uDF33')}`;
+        if (t.includes('textil')) return `Tecidos descartados como roupas e panos ${emoji('\uD83D\uDC55')}`;
+        if (t.includes('metal')) return `Materiais metálicos como latas e fios ${emoji('\uD83E\uDD6B')}`;
+        if (t.includes('moveis')) return `Itens como sofás, mesas e armários ${emoji('\uD83D\uDECB\uFE0F')}`;
+        if (t.includes('ecoponto')) return `Locais específicos para o descarte correto ${emoji('\u267B\uFE0F')}`;
+    }
+
+    if (t.includes('saldo') || t.includes('pontos')) return "Você tem <b>1.250 Green Bytes (GBs)</b> acumulados! \uD83E\uDD11";
+    if (t.includes('mapa')) return "Você pode encontrar o ponto de coleta mais próximo na aba <b>'Mapa'</b>.";
+
+    return "Desculpe, ainda estou aprendendo! \uD83E\uDD16<br>Tente perguntar: <b>exemplos de plástico</b> ou <b>como faço para reciclar</b>.";
+  }
+
+  // 👇 LÓGICA DE DIGITAÇÃO QUE NÃO QUEBRA EMOJIS 👇
+  async function digitarHTML(elemento, html) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    elemento.innerHTML = ''; 
+
+    async function processarNos(nos, pai) {
+      for (const no of nos) {
+        if (no.nodeType === Node.TEXT_NODE) {
+          const texto = no.textContent;
+          for (const char of texto) {
+            pai.append(char);
+            rolarParaBaixo();
+            await new Promise(r => setTimeout(r, 15)); 
+          }
+        } else if (no.nodeType === Node.ELEMENT_NODE) {
+          const novaTag = document.createElement(no.tagName);
+          
+          if (no.className) novaTag.className = no.className; // Mantém a classe do emoji
+          
+          pai.appendChild(novaTag);
+
+          // 🛑 SEGREDO: Se for emoji ou BR, coloca tudo de uma vez
+          if (no.classList.contains('emoji') || no.tagName === 'BR') {
+             novaTag.innerHTML = no.innerHTML; 
+             rolarParaBaixo();
+             await new Promise(r => setTimeout(r, 50)); 
+          } else {
+             await processarNos(Array.from(no.childNodes), novaTag);
+          }
+        }
+      }
+    }
+    await processarNos(Array.from(tempDiv.childNodes), elemento);
+  }
+
+  function rolarParaBaixo() {
+    const messages = document.getElementById("linkaMessages");
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {
+                "value": 120, /* Quantidade inicial boa */
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+            },
+            "opacity": {
+                "value": 0.2, /* Sua configuração da Login */
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.2, /* Linhas mais visíveis como você queria */
+                "width": 2.0    /* Linhas mais grossas */
+            },
+            "move": {
+                "enable": true,
+                "speed": 3,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas", /* Detecta o clique na tela inteira */
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "grab" /* Efeito legal de conectar linhas no mouse */
+                },
+                "onclick": {
+                    "enable": true,  /* AGORA SIM: Ativa o clique! */
+                    "mode": "push"   /* E adiciona mais bolinhas */
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 140,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "push": {
+                    "particles_nb": 4 /* Adiciona 4 bolinhas a cada clique */
+                }
+            }
+        },
+        "retina_detect": true
+    });
+</script>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenLink | Fim</title>
+<link rel="icon" type="image/png" href="2-transparente.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif; }
+  
+  body{
+    background:linear-gradient(270deg,#36b5f5,#93f860,#36b5f5);
+    background-size:400% 400%;
+    animation:fundoAnimado 7s ease infinite;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    cursor: default;
+  }
+
+  @keyframes fundoAnimado{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+  /* O fundo de partículas fica atrás de tudo */
+  #particles-js{ 
+    position:absolute; 
+    width:100%; 
+    height:100%; 
+    z-index:1; 
+  }
+
+  .container{
+    position:relative;
+    z-index:2; /* Garante que a imagem fique sobre as partículas */
+    text-align:center;
+    animation:fadeIn 1.5s ease-out;
+  }
+  
+  /* --- ESTILO DA IMAGEM --- */
+  .logo-main{ 
+    width:400px;
+    filter:drop-shadow(0 0 12px rgba(255,255,255,0.6));
+    cursor: pointer; 
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .logo-main:hover {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 25px rgba(255,255,255,0.8));
+  }
+  
+  @keyframes fadeIn{
+    from{opacity:0;transform:scale(.9)}
+    to{opacity:1;transform:scale(1)}
+  }
+  
+  /* --- BOTÃO ENTRAR NOVAMENTE --- */
+  .btn-voltar {
+    position: fixed;
+    bottom: 80px; 
+    z-index: 10;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    text-transform: none; 
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 12px 35px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-weight: bold;
+  }
+
+  .btn-voltar:hover {
+    background: #ffffff;
+    color: #36b5f5; 
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+    border-color: #fff;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<div class="container">
+  <img src="4-transparente.png" alt="GreenLink" class="logo-main" id="logoAudio">
+</div>
+
+<a href="login.html" class="btn-voltar" id="btnRestart">Entrar novamente</a>
+
+<audio id="meuAudio" preload="auto">
+  <source src="voz-greenlink.mp4" type="audio/mpeg">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+  /* --- SUA CONFIGURAÇÃO EXATA DE PARTÍCULAS --- */
+  particlesJS('particles-js', {
+    "particles": {
+      "number": {
+        "value": 120,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        },
+        "polygon": {
+          "nb_sides": 5
+        }
+      },
+      "opacity": {
+        "value": 0.2,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 40,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.2,
+        "width": 2.0
+      },
+      "move": {
+        "enable": true,
+        "speed": 3,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false,
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "grab"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 140,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 40,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200,
+          "duration": 0.4
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true
+  });
+
+  /* --- LÓGICA DE ÁUDIO (MANTIDA) --- */
+  const logo = document.getElementById('logoAudio');
+  const audioPlayer = document.getElementById('meuAudio');
+  
+  // Tratamento de erro caso o áudio não exista
+  audioPlayer.addEventListener('error', function(e) {
+      console.log("Atenção: Áudio 'voz-greenlink.mp3' não encontrado.");
+  }, true);
+
+  logo.addEventListener('click', () => {
+    // Reinicia e toca
+    audioPlayer.currentTime = 0;
+    audioPlayer.play().catch(error => {
+        // Se der erro, não faz nada visualmente, apenas loga no console
+        console.log("Erro de reprodução: " + error);
+    });
+  });
+
+  // Prevenir clique no botão de propagar
+  document.getElementById('btnRestart').addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+</script>
+
+</body>
+</html>
